@@ -11,5 +11,7 @@ data class EqEvent(
     val origin: Origin,
     val time: Instant,
     val timeText: String,
-    val text: String)
+    val text: String,
+    val character: String? = null,
+    val server: String? = null)
 
