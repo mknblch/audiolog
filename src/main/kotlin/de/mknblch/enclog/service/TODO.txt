@@ -1,0 +1,5 @@
+- rogue failed skills warn sound
+
+You are as quiet as a herd of running elephants.
+You failed to hide yourself.
+Your Dazzle spell has worn off.
