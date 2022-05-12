@@ -11,7 +11,7 @@ import org.springframework.context.event.EventListener
 class EncLog : CommandLineRunner {
 
     override fun run(vararg args: String?) {
-        logger.info("Joining thread, press Ctrl+C to shutdown application")
+        logger.info("Waiting for data, press Ctrl+C to shutdown application")
         Thread.currentThread().join()
     }
 
@@ -19,7 +19,6 @@ class EncLog : CommandLineRunner {
     fun onEqlogEvent(event: Any) {
         // omit DBG log
         if (event is EqEvent && event.origin == Origin.DBG) return
-
         logger.trace(event.toString())
     }
 
