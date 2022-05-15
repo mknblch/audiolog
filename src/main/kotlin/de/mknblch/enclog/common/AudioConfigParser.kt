@@ -44,7 +44,7 @@ class AudioConfigParser {
         /*
          * parse: sounds/Alert.wav[volume=100, delay=100]
          */
-        fun parseArguments(line: String): Map<String, String> = line.trim {
+        private fun parseArguments(line: String): Map<String, String> = line.trim {
             when (it) {
                 ' ' -> true
                 '[' -> true
