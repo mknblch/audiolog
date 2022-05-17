@@ -22,11 +22,12 @@ abstract class EventMapper<T: Any>(regexString: String, private val origin: Orig
     }
 
     @EventListener
-    protected fun map(event: EqEvent) {
-        if (event.origin != origin) return
-        val matchResult = regex.matchEntire(event.text) ?: return
-        val transformed = map(event.origin, event.time, event.timeText, event.text, matchResult) ?: return
-        applicationEventPublisher.publishEvent(transformed)
+    protected fun map(event: EqEvent): T? {
+        if (event.origin != origin) return null
+        val matchResult = regex.matchEntire(event.text) ?: return null
+        val transformed = map(event.origin, event.time, event.timeText, event.text, matchResult) ?: return null
+//        applicationEventPublisher.publishEvent(transformed)
+        return transformed
     }
 
     abstract fun map(origin: Origin, time: Instant, timeText: String, text: String, matchResult: MatchResult): T?

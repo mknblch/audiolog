@@ -23,9 +23,10 @@ internal class AudioConfigParserTest {
 
     @Test
     fun testComplexLine() {
-        val configLine = AudioConfigParser.parseLine("sounds/Alert.wav[delay=100]:You are as quiet as a herd of running elephants\\.")
+        val configLine = AudioConfigParser.parseLine("sounds/Alert.wav[delay=100, continue]:You are as quiet as a herd of running elephants\\.")
         assertEquals("sounds/Alert.wav", configLine?.soundFile)
         assertEquals("You are as quiet as a herd of running elephants\\.", configLine?.regex?.pattern)
+        println(configLine)
 //        assertEquals(100, configLine?.delay)
     }
 

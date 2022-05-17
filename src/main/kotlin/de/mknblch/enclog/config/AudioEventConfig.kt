@@ -22,9 +22,9 @@ class AudioEventConfig() {
     @Value("\${audio_config_file:audio_config.cfg}")
     private lateinit var audioConf: Resource
 
-    private val resourceLoader: ResourceLoader = DefaultResourceLoader()
-
     private lateinit var audioTrigger: List<Pair<Regex, AudioPlayer?>>
+
+    private val resourceLoader: ResourceLoader = DefaultResourceLoader()
 
     @PostConstruct
     fun init() {
@@ -43,7 +43,10 @@ class AudioEventConfig() {
         audioTrigger.forEach { pair ->
             if(!pair.first.matches(event.text)) return@forEach
             pair.second?.run(AudioPlayer::play)
-            return
+            // skip if "continue´" is not set
+            if (pair.second?.arguments?.get("continue") != "true") {
+                return
+            }
         }
     }
 

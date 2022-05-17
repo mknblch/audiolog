@@ -20,9 +20,19 @@ internal class AudioPlayerTest {
 
     @Test
     fun testSound() {
-        val audioPlayer = AudioPlayer(resource, mapOf("volume" to "0.3"))
 
-        audioPlayer.play()
-        Thread.sleep(1000)
+        for (i in 10..100 step 10) {
+            AudioPlayer(
+                resource, mapOf(
+                    "volume" to i.toString(),
+                    "delay" to "100"
+                )
+            ).play()
+            Thread.sleep(500)
+        }
+
     }
+
+
+
 }

@@ -52,8 +52,9 @@ class AudioConfigParser {
                 else -> false
             }
         }.split(',', ';').mapNotNull { args ->
-            val elements = args.trim().split('=')
-            if (elements.size != 2) return@mapNotNull null
+            val trim = args.trim()
+            val elements = trim.split('=')
+            if (elements.size != 2) return@mapNotNull Pair(trim, "true") // parse flags as boolean
             elements.let { arg ->
                 Pair(arg[0], arg[1])
             }
