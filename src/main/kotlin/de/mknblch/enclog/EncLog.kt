@@ -16,10 +16,14 @@ class EncLog : CommandLineRunner {
     }
 
     @EventListener
-    fun onEqlogEvent(event: Any) {
-        // omit DBG log
-        if (event is EqEvent && event.origin == Origin.DBG) return
+    fun onEqEvent(event: EqEvent) {
+        if (event.origin == Origin.DBG) return // omit DBG log
         logger.trace(event.toString())
+    }
+
+    @EventListener
+    fun onGameEvent(event: GameEvent) {
+        logger.info(event.toString())
     }
 
     companion object {

@@ -8,18 +8,19 @@ import org.springframework.context.event.EventListener
 import org.springframework.stereotype.Service
 import java.time.Instant
 
-// Your Mesmerize spell has worn off.
-data class SpellOffEvent(val time: Instant, val spell: String) : GameEvent
+
+data class StartCastEvent(val time: Instant, val spell: String) : GameEvent
+
 
 @Service
-class SpellOffMapper {
+class StartCastMapper {
 
-    val filter = mapper(Origin.EQLOG, "Your (.+?) spell has worn off.") { e, r ->
-        SpellOffEvent(e.time, r.groupValues[1])
+    val filter = mapper(Origin.EQLOG, "You begin casting (.+?)\\.") { e, r ->
+        StartCastEvent(e.time, r.groupValues[1])
     }
 
     @EventListener
-    fun map(event: EqEvent): SpellOffEvent? {
+    fun map(event: EqEvent): StartCastEvent? {
         return filter(event)
     }
 }

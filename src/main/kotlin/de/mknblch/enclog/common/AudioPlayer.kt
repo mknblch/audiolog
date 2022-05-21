@@ -36,8 +36,18 @@ class AudioPlayer(
 
         private val logger: Logger = LoggerFactory.getLogger(AudioPlayer::class.java)
 
+        fun playAsync(
+            resource: Resource, delay: Number = 0L, volume: Number = 100.0, lambda: () -> Unit = {
+                logger.trace("${resource.file}[delay=$delay, volume=$volume] stopped")
+            }
+        ) {
+            GlobalScope.launch(Dispatchers.IO) {
+                play(resource, delay, volume, lambda)
+            }
+        }
+
         suspend fun play(
-            resource: Resource, delay: Long = 0L, volume: Double = 100.0, lambda: () -> Unit = {
+            resource: Resource, delay: Number = 0L, volume: Number = 100.0, lambda: () -> Unit = {
                 logger.trace("${resource.file}[delay=$delay, volume=$volume] stopped")
             }
         ) {
@@ -52,8 +62,8 @@ class AudioPlayer(
                 clip.open(stream)
                 val gainControl = clip.getControl(FloatControl.Type.MASTER_GAIN) as FloatControl
                 val range = gainControl.maximum - gainControl.minimum;
-                gainControl.value = (range * (volume / 100.0) + gainControl.minimum).toFloat()
-                if (delay > 0) delay(delay)
+                gainControl.value = (range * (volume.toDouble() / 100.0) + gainControl.minimum).toFloat()
+                if (delay.toLong() > 0) delay(delay.toLong())
                 clip.start()
             }
         }

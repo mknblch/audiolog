@@ -12,7 +12,7 @@ class AudioConfigParser {
 
         private val audioPartRegex = Regex("([^\\[]+)\\[([^]]+)]")
 
-        private val skip = listOf("NONE", "EMPTY", "-", "")
+        private val skip = listOf("IGNORE", "SKIP")
 
         fun parseLine(line: String): ConfigLine? {
             // skip empty lines

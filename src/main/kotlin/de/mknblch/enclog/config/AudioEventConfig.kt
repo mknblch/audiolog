@@ -17,7 +17,7 @@ import javax.annotation.PreDestroy
 
 
 @Configuration
-class AudioEventConfig() {
+class AudioEventConfig(private val queue: AudioQueue) {
 
     @Value("\${audio_config_file:audio_config.cfg}")
     private lateinit var audioConf: Resource
