@@ -4,6 +4,7 @@ import kotlinx.coroutines.*
 import org.slf4j.Logger
 import org.slf4j.LoggerFactory
 import org.springframework.core.io.Resource
+import java.io.BufferedInputStream
 import javax.sound.sampled.AudioSystem
 import javax.sound.sampled.FloatControl
 import javax.sound.sampled.LineEvent
@@ -52,7 +53,7 @@ class AudioPlayer(
             }
         ) {
             val clip = AudioSystem.getClip()
-            AudioSystem.getAudioInputStream(resource.inputStream).use { stream ->
+            AudioSystem.getAudioInputStream(BufferedInputStream(resource.inputStream)).use { stream ->
                 clip.addLineListener { e: LineEvent ->
                     if (e.type === LineEvent.Type.STOP) {
                         clip.close()

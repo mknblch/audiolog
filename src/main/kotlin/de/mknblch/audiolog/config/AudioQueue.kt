@@ -7,6 +7,8 @@ import org.slf4j.Logger
 import org.slf4j.LoggerFactory
 import org.springframework.core.io.Resource
 import org.springframework.stereotype.Service
+import java.io.BufferedInputStream
+import java.lang.IllegalArgumentException
 import java.time.Instant
 import java.util.*
 import java.util.concurrent.ConcurrentLinkedQueue
@@ -55,6 +57,9 @@ class AudioQueue : AutoCloseable {
     }
 
     fun enqueue(resource: Resource, delay: Int = 0, volume: Int = 100, id: String = "none"): AudioTask {
+
+        if (!resource.exists()) throw IllegalArgumentException("resource $resource doesn't exist")
+
         return AudioTask(
             resource = resource,
             playTime = Instant.now().plusMillis(delay.toLong()),
@@ -76,7 +81,7 @@ class AudioQueue : AutoCloseable {
 
     private fun play(audioTask: AudioTask) {
         val clip = AudioSystem.getClip() // TODO try use {}
-        AudioSystem.getAudioInputStream(audioTask.resource.inputStream).use { stream ->
+        AudioSystem.getAudioInputStream(BufferedInputStream(audioTask.resource.inputStream)).use { stream ->
             clip.addLineListener { e: LineEvent ->
                 if (e.type === LineEvent.Type.STOP) clip.close()
             }
