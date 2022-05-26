@@ -38,6 +38,7 @@
 
             <plugin>
                 <artifactId>maven-surefire-plugin</artifactId>
+                <groupId>org.apache.maven.plugins</groupId>
                 <version>2.22.2</version>
             </plugin>
 
@@ -50,7 +51,7 @@
                             <goal>repackage</goal>
                         </goals>
                         <configuration>
-                            <classifier>spring-boot</classifier>
+<!--                            <classifier>spring-boot</classifier>-->
                             <mainClass>
                                 de.mknblch.audiolog.AudioLog
                             </mainClass>
@@ -69,7 +70,6 @@
     </build>
 
     <dependencies>
-        <!-- https://mvnrepository.com/artifact/net.sf.sociaal/freetts -->
 <!--        <dependency>-->
 <!--            <groupId>net.sf.sociaal</groupId>-->
 <!--            <artifactId>freetts</artifactId>-->
