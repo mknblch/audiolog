@@ -35,11 +35,8 @@ class MezRecastEffect(
         for (t in 0 until reminderTicks) {
             val volume = startVolume + t * volumeIncPerStep
             val delay = reminderDelay * t
-            println("$t - > volume: $volume, $delay")
             queue.enqueue(resource,  wearOffTime - reminderStart + delay, volume, event.spell.spellName)
-
         }
-
         val tracks = tracking.compute(event.spell.spellName) { _, c -> c?.plus(1) ?: 1 }
         logger.debug("counting $tracks active targets under ${event.spell.spellName}")
     }

@@ -8,17 +8,11 @@ import org.springframework.boot.autoconfigure.SpringBootApplication
 import org.springframework.context.event.EventListener
 
 @SpringBootApplication
-class EncLog : CommandLineRunner {
+class AudioLog : CommandLineRunner {
 
     override fun run(vararg args: String?) {
         logger.info("Waiting for data, press Ctrl+C to shutdown application")
         Thread.currentThread().join()
-    }
-
-//    @EventListener
-    fun onEqEvent(event: EqEvent) {
-        if (event.origin == Origin.DBG) return // omit DBG log
-        logger.trace(event.toString())
     }
 
     @EventListener
@@ -28,11 +22,11 @@ class EncLog : CommandLineRunner {
 
     companion object {
 
-        private val logger: Logger = LoggerFactory.getLogger(EncLog::class.java)
+        private val logger: Logger = LoggerFactory.getLogger(AudioLog::class.java)
 
         @JvmStatic
         fun main(args: Array<String>) {
-            SpringApplication.run(EncLog::class.java, *args)
+            SpringApplication.run(AudioLog::class.java, *args)
         }
     }
 }
