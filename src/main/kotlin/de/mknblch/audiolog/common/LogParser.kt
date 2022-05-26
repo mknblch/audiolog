@@ -17,11 +17,11 @@ abstract class LogParser(val logfile: File, private val maxFileSize: Long = 1024
 
     init {
 
-        logger.debug("advancing $logfile to ${randomAccessFile.length()}")
+        logger.trace("advancing $logfile to ${randomAccessFile.length()}")
         randomAccessFile.seek(randomAccessFile.length())
 
         GlobalScope.async(Dispatchers.IO) {
-            logger.info("starting parser $logfile")
+            logger.debug("starting parser $logfile")
             readLoop()
         }
     }
@@ -59,7 +59,7 @@ abstract class LogParser(val logfile: File, private val maxFileSize: Long = 1024
                 }
             }
         }
-        logger.info("$logfile closed")
+        logger.debug("$logfile closed")
         randomAccessFile.close()
 
     }
@@ -67,7 +67,6 @@ abstract class LogParser(val logfile: File, private val maxFileSize: Long = 1024
     abstract fun emit(value: String)
 
     override fun close() {
-        logger.info("closing $logfile")
         active.set(false)
     }
 

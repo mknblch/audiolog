@@ -31,10 +31,64 @@
     </parent>
 
     <build>
+        <finalName>audiolog</finalName>
         <sourceDirectory>src/main/kotlin</sourceDirectory>
         <testSourceDirectory>src/test/kotlin</testSourceDirectory>
         <plugins>
 
+            <plugin>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-maven-plugin</artifactId>
+                <executions>
+                    <execution>
+                        <configuration>
+                            <mainClass>de.mknblch.audiolog.AudioLog</mainClass>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+
+            <plugin>
+                <artifactId>kotlin-maven-plugin</artifactId>
+                <groupId>org.jetbrains.kotlin</groupId>
+                <version>${kotlin.version}</version>
+                <configuration>
+                    <compilerPlugins>
+                        <plugin>spring</plugin>
+                        <plugin>all-open</plugin>
+                    </compilerPlugins>
+                </configuration>
+                <dependencies>
+                    <dependency>
+                        <groupId>org.jetbrains.kotlin</groupId>
+                        <artifactId>kotlin-maven-allopen</artifactId>
+                        <version>${kotlin.version}</version>
+                    </dependency>
+                </dependencies>
+            </plugin>
+
+
+<!--            <plugin>-->
+<!--                <artifactId>kotlin-maven-plugin</artifactId>-->
+<!--                <groupId>org.jetbrains.kotlin</groupId>-->
+<!--                <version>${kotlin.version}</version>-->
+
+<!--                <configuration>-->
+<!--                    <compilerPlugins>-->
+<!--                        &lt;!&ndash; Or "spring" for the Spring support &ndash;&gt;-->
+<!--                        <plugin>spring</plugin>-->
+<!--&lt;!&ndash;                        <plugin>all-open</plugin>&ndash;&gt;-->
+<!--                    </compilerPlugins>-->
+<!--                </configuration>-->
+
+<!--                <dependencies>-->
+<!--                    <dependency>-->
+<!--                        <groupId>org.jetbrains.kotlin</groupId>-->
+<!--                        <artifactId>kotlin-maven-allopen</artifactId>-->
+<!--                        <version>${kotlin.version}</version>-->
+<!--                    </dependency>-->
+<!--                </dependencies>-->
+<!--            </plugin>-->
 
             <plugin>
                 <artifactId>maven-surefire-plugin</artifactId>
@@ -42,30 +96,40 @@
                 <version>2.22.2</version>
             </plugin>
 
-            <plugin>
-                <groupId>org.springframework.boot</groupId>
-                <artifactId>spring-boot-maven-plugin</artifactId>
-                <executions>
-                    <execution>
-                        <goals>
-                            <goal>repackage</goal>
-                        </goals>
-                        <configuration>
-<!--                            <classifier>spring-boot</classifier>-->
-                            <mainClass>
-                                de.mknblch.audiolog.AudioLog
-                            </mainClass>
-                        </configuration>
-                    </execution>
-                </executions>
-                <dependencies>
-                    <dependency>
-                        <groupId>org.jetbrains.kotlin</groupId>
-                        <artifactId>kotlin-maven-allopen</artifactId>
-                        <version>1.1.4-3</version>
-                    </dependency>
-                </dependencies>
-            </plugin>
+<!--            <plugin>-->
+<!--                <artifactId>kotlin-maven-plugin</artifactId>-->
+<!--                <groupId>org.jetbrains.kotlin</groupId>-->
+<!--                <version>1.6.21</version>-->
+<!--                <configuration>-->
+<!--                    <compilerPlugins>-->
+<!--                        <plugin>spring</plugin>-->
+<!--                    </compilerPlugins>-->
+<!--                    <jvmTarget>11</jvmTarget>-->
+<!--                </configuration>-->
+<!--                <executions>-->
+<!--                    <execution>-->
+<!--                        <id>compile</id>-->
+<!--                        <phase>compile</phase>-->
+<!--                        <goals>-->
+<!--                            <goal>compile</goal>-->
+<!--                        </goals>-->
+<!--                    </execution>-->
+<!--                    <execution>-->
+<!--                        <id>test-compile</id>-->
+<!--                        <phase>test-compile</phase>-->
+<!--                        <goals>-->
+<!--                            <goal>test-compile</goal>-->
+<!--                        </goals>-->
+<!--                    </execution>-->
+<!--                </executions>-->
+<!--                <dependencies>-->
+<!--                    <dependency>-->
+<!--                        <groupId>org.jetbrains.kotlin</groupId>-->
+<!--                        <artifactId>kotlin-maven-allopen</artifactId>-->
+<!--                        <version>1.6.10</version>-->
+<!--                    </dependency>-->
+<!--                </dependencies>-->
+<!--            </plugin>-->
         </plugins>
     </build>
 
