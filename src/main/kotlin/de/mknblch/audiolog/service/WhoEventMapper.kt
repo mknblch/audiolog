@@ -48,7 +48,7 @@ class WhoEventMapper {
             active = false
             return WhoEvent(event.time, it.groupValues[2], players)
         }
-        players.add(event.text)
+        players.add(event.text.trim())
         return null
     }
 
