@@ -1,7 +1,17 @@
 EverQuest (tm) Log-Parser
 
+A simple logfile parser for EverQuest's debug- and player-log. Adds missing sound-effects to events like
+    - charm break (enc)
+    - mez break (enc)
+    - mez & rapture - recast alert
+    - spell interrupt's / fizzle / resist / recast time
+    - missing notes
+    - sneak or hide fail
+
+Additional audio events can be added using the config file.
+
 Usage:
     - change eq_directory in application.properties to your EQ folder
     - adapt audio_config.cfg if needed
-    - start the app using the batch-file (java runtime is needed)
+    - start the app using the batch-file (java runtime needed)
     - type "/log on" in game
