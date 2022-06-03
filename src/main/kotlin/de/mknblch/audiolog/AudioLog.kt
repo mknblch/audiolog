@@ -32,6 +32,11 @@ class AudioLog : CommandLineRunner {
         logger.debug(event.toString())
     }
 
+    @EventListener
+    fun onEqEvent(event: EqEvent) {
+        logger.trace(event.toString())
+    }
+
     companion object {
 
         private val logger: Logger = LoggerFactory.getLogger(AudioLog::class.java)

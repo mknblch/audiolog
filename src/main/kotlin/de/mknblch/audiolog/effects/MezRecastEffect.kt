@@ -50,7 +50,10 @@ class MezRecastEffect(
     @EventListener
     fun onSpellOff(event: SpellOffEvent) {
         val activeMezEffects: Int? = tracking.computeIfPresent(event.spell) { _, c -> c - 1 }
-        if (activeMezEffects == 0) queue.dequeue(event.spell)
+        if (activeMezEffects == 0) {
+            logger.debug("cancel all remaining reminders for ${event.spell}")
+            queue.dequeue(event.spell)
+        }
     }
 
     companion object {
