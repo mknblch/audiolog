@@ -1,0 +1,7 @@
+EverQuest (tm) Log-Parser
+
+Usage:
+    - change eq_directory in application.properties to your EQ folder
+    - adapt audio_config.cfg if needed
+    - start the app using the batch-file (java runtime is needed)
+    - type "/log on" in game
