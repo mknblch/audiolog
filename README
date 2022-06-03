@@ -4,7 +4,9 @@ A simple logfile parser for EverQuest's debug- and player-log. Adds missing soun
     - charm break (enc)
     - mez break (enc)
     - mez & rapture - recast alert
-    - spell interrupt's / fizzle / resist / recast time
+    - enemy spell interrupt
+    - player enter map
+    - spell-fizzle / resist / recast time
     - missing notes
     - sneak or hide fail
     - ...
