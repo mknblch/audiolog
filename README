@@ -7,6 +7,7 @@ A simple logfile parser for EverQuest's debug- and player-log. Adds missing soun
     - spell interrupt's / fizzle / resist / recast time
     - missing notes
     - sneak or hide fail
+    - ...
 
 Additional audio events can be added using the config file.
 
