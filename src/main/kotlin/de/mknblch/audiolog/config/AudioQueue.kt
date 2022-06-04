@@ -60,6 +60,8 @@ class AudioQueue : AutoCloseable {
 
         if (!resource.exists()) throw IllegalArgumentException("resource $resource doesn't exist")
 
+        logger.debug("enqueuing ${resource.filename} (v:$volume) in ${delay}ms")
+
         return AudioTask(
             resource = resource,
             playTime = Instant.now().plusMillis(delay.toLong()),

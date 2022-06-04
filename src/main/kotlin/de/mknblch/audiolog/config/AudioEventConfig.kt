@@ -29,6 +29,7 @@ class AudioEventConfig {
     fun init() {
         audioTrigger = audioConf.inputStream.reader(Charsets.UTF_8).readLines().mapNotNull { line ->
             val configLine = AudioConfigParser.parseLine(line) ?: return@mapNotNull null
+            logger.debug("processing $configLine")
             Pair(
                 configLine.regex,
                 configLine.soundFile?.let { AudioPlayer(resourceLoader.getResource(it), configLine.args) }
